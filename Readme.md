@@ -4,7 +4,9 @@ Welcome to the second ANZ Summer of Tech Bootcamp for 2020!
 
 # Introduction
 
-To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerleague.com) league. DeepRacer is a reinforcement maching learning based global autonomous car racing league. Anyone can participate in the league online, however earlier this year in February @Alex, @Chris and I participated in an AWS DeepRacer hackathon here in Wellington, the first of it's kind in Wellington. We had so much fun and found this such a good way to start with machine learning that we thought we would run this session with you today. 
+To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerleague.com) league. DeepRacer is a reinforcement maching learning based global autonomous car racing league. Anyone can participate in the league online, however earlier this year in February @Alex, [@Chris](https://github.com/corbetchri) and I participated in an AWS DeepRacer hackathon here in Wellington, the first of it's kind in Wellington. We had so much fun and found this such a good way to start with machine learning that we thought we would run this session with you today. 
+
+![AWS Deepracer](./img/track.jpg "AWS DeepRacer Wellington NZ")
 
 # How this session will run
 
