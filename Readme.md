@@ -48,8 +48,6 @@ Make sure you are in the **N. Virginia** region (AWS DeepRacer resources are not
 
 If you have not yet created resources, please click the "Create Resources" button. This will take ~5 minutes to complete. This gives AWS DeepRacer permission to call Amazon SageMaker and AWS RoboMaker on your behalf, as well as spins up a CloudFormation stack that will manage the VPCs for Amazon SageMaker and AWS RoboMaker. Do not press the "Reset resources" button as this will delete the stack and restart the process. Please see [Lab 0 Create resources](https://github.com/aws-samples/aws-deepracer-workshops/tree/master/Workshops/2019-AWSSummits-AWSDeepRacerService/Lab0_Create_resources) for more details.
 
-![Lefthandnavbar](img/LHNB.png)
-
 While the stack is being created we can call out items in the left-hand navigation bar:
 
 - **Get started with reinforcement learning**: Get an interactive introduction to RL.
