@@ -10,7 +10,10 @@ Earlier this year in February @Alex, [@Chris](https://github.com/corbetchri) and
 
 ![AWS Deepracer track](./img/track.jpg "AWS DeepRacer Wellington NZ")
 
+<details>
+<summary>A video of the winning DeepRacer Wellington lap</summary>
 ![AWS Deepracer lap](./img/lap.gif "AWS DeepRacer Winning Lap")
+</details>
 
 &nbsp;
 &nbsp;
