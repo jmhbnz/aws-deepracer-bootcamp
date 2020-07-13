@@ -6,7 +6,7 @@ Welcome to the second ANZ Summer of Tech Bootcamp for 2020!
 
 To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerleague.com) league. DeepRacer is a reinforcement maching learning based global autonomous car racing league. Anyone can participate in the league online and in person person events are held regularly as well. 
 
-Earlier this year in February @Alex, [@Chris](https://github.com/corbetchri) and I participated in an AWS DeepRacer hackathon here in Wellington, the first of it's kind in the city. We had so much fun and found this such a good way to start with machine learning that we thought we would run this session based on DeepRacer with you today. 
+Earlier this year in February [@Alex](https://github.com/alextaikato), [@Chris](https://github.com/corbetchri) and I participated in an AWS DeepRacer hackathon here in Wellington, the first of it's kind in the city. We had so much fun and found this such a good way to start with machine learning that we thought we would run this session based on DeepRacer with you today. 
 
 ![AWS Deepracer track](./img/track.jpg "AWS DeepRacer Wellington NZ")
 
@@ -143,7 +143,7 @@ As detailed in the workshop, training our RL model takes place on a simulated ra
 
 When training a model, keep the track on which you want to race in mind. Train on the track most similar to the final track you intend to race on. While this isn't required and doesn't guarantee a good model, it will maximize the odds that your model will get its best performance on the race track. Furthermore, if you train on a straight track, don't expect your model to learn how to turn.
 
-Scroll down and **please select the 2019 DeepRacer Championship Cup track** from the Environment Simulation section. This is the track that you will encounter in the 2020 Summit Circuit.  
+Scroll down and **please select the reInvent:2018 track** from the Environment Simulation section. This is an ideal starting track.  
 
 ![Model environment](img/create_model_1_environment_simulation.png)
 
