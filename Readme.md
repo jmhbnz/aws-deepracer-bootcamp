@@ -12,7 +12,9 @@ Earlier this year in February @Alex, [@Chris](https://github.com/corbetchri) and
 
 <details>
 <summary>A video of the winning DeepRacer Wellington lap</summary>
+
 ![AWS Deepracer lap](./img/lap.gif "AWS DeepRacer Winning Lap")
+
 </details>
 
 &nbsp;
