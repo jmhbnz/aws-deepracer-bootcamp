@@ -4,7 +4,21 @@ Welcome to the second ANZ Summer of Tech Bootcamp for 2020!
 
 # Introduction
 
-To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerleague.com) league. DeepRacer is a reinforcement maching learning based global autonomous car racing league. Anyone can participate in the league online, however earlier this year in February @Alex, @Chris and I participated in an AWS DeepRacer hackathon here in Wellington, the first of it's kind in Wellington. We had so much fun and found this such a good way to start with machine learning that we thought we would run this session with you today. 
+To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerleague.com) league. DeepRacer is a reinforcement maching learning based global autonomous car racing league. Anyone can participate in the league online and in person person events are held regularly as well. 
+
+Earlier this year in February [@Alex](https://github.com/alextaikato), [@Chris](https://github.com/corbetchri) and I participated in an AWS DeepRacer hackathon here in Wellington, the first of it's kind in the city. We had so much fun and found this such a good way to start with machine learning that we thought we would run this session based on DeepRacer with you today. 
+
+![AWS Deepracer track](./img/track.jpg "AWS DeepRacer Wellington NZ")
+
+<details>
+<summary>A video of the winning DeepRacer Wellington lap</summary>
+
+![AWS Deepracer lap](./img/lap.gif "AWS DeepRacer Winning Lap")
+
+</details>
+
+&nbsp;
+&nbsp;
 
 # How this session will run
 
@@ -18,22 +32,13 @@ To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerlea
 
 - Timing - This is a two hour session, with the opportunity to be working in teams or individually for 45 minutes with the remainder of the time together as one group.
 
-
-# Some notes on deepracer
-- After the lab, make sure you check out new features in the console: **Garage**, where you can customize the sensors on your car, and **Community races** where you can create your own virtual races in the AWS console that you can race in with friends and colleagues.
-- **DeepRacer will have three racing formats in 2020**, namely time-trial, object avoidance, and head-to-head racing.for more details on the League go to [www.deepracerleague.com](https://www.deepracerleague.com)
-- **In this lab we are targeting a time-trial model**. You can get a reasonable time-trial model within 120 minutes of training.
--  Join in with the **[AWS DeepRacer Slack Community](https://deepracer-community.slack.com/)** for discussions with the community or post your questions to the [AWS DeepRacer forum](https://forums.aws.amazon.com/forum.jspa?forumID=318).
-- If you want to continue learning after the lab, please check out the following:
-	- [reInvent 2019 Expert Boot Camp videos](http://bit.ly/DRBootCamp) from our community experts
-	- online video course by the AWS Training and Certification team **[AWS DeepRacer: Driven by Reinforcement Learning](http://bit.ly/DeepRacerVideoCourse)**
-
-
+&nbsp;
+&nbsp;
 
 # Section 1: Training a model together
 ## Step 1: Lets login to the AWS DeepRacer service and create resources
 
-To get underway we'll complete this first walkthrough as a group, just to give you an idea how DeepRacer works. Once we've completed the walkthrough you'll have time to work on a model as a team or individually.
+To get underway we'll complete this first walkthrough together as a group, just to give you an idea how DeepRacer works. Once we've completed the walkthrough you'll have time to work on a model as a team or individually.
 
 Our first step is to log into the [AWS Console](https://console.aws.amazon.com/deepracer/home?region=us-east-1#getStarted).
 
@@ -43,15 +48,13 @@ Make sure you are in the **N. Virginia** region (AWS DeepRacer resources are not
 
 If you have not yet created resources, please click the "Create Resources" button. This will take ~5 minutes to complete. This gives AWS DeepRacer permission to call Amazon SageMaker and AWS RoboMaker on your behalf, as well as spins up a CloudFormation stack that will manage the VPCs for Amazon SageMaker and AWS RoboMaker. Do not press the "Reset resources" button as this will delete the stack and restart the process. Please see [Lab 0 Create resources](https://github.com/aws-samples/aws-deepracer-workshops/tree/master/Workshops/2019-AWSSummits-AWSDeepRacerService/Lab0_Create_resources) for more details.
 
-![Lefthandnavbar](img/LHNB.png)
-
 While the stack is being created we can call out items in the left-hand navigation bar:
 
 - **Get started with reinforcement learning**: Get an interactive introduction to RL.
 - **Models**: View your list of models, create new models, or clone existing models.
-- **New! Garage**: You can now customize your own virtual cars by experimenting with different sensor combinations and neural network selections. This is also where you specify the action space for your car.
+- **Garage**: You can now customize your own virtual cars by experimenting with different sensor combinations and neural network selections. This is also where you specify the action space for your car.
 - **Official DeepRacer Virtual Circuit**: Get ready for the 2020 League by training your models and racing in the pre-season races here.
-- **New! Community Races**: Create your own virtual races that you can share with friends and colleagues.
+- **Community Races**: Create your own virtual races that you can share with friends and colleagues.
 
 Let's dive into the Garage first, as this is where we will customize the car we will use during model training. Please expand the left hand navigation bar and select **Garage**.
 
@@ -140,7 +143,7 @@ As detailed in the workshop, training our RL model takes place on a simulated ra
 
 When training a model, keep the track on which you want to race in mind. Train on the track most similar to the final track you intend to race on. While this isn't required and doesn't guarantee a good model, it will maximize the odds that your model will get its best performance on the race track. Furthermore, if you train on a straight track, don't expect your model to learn how to turn.
 
-Scroll down and **please select the 2019 DeepRacer Championship Cup track** from the Environment Simulation section. This is the track that you will encounter in the 2020 Summit Circuit.  
+Scroll down and **please select the reInvent:2018 track** from the Environment Simulation section. This is an ideal starting track.  
 
 ![Model environment](img/create_model_1_environment_simulation.png)
 
@@ -320,57 +323,6 @@ Once you are done creating your reward function be sure to use the **Validate** 
 
 Scroll down and select **Next**.
 
-For those interested in head-to-head racing, here is a basic reward function
-
-**Example 4**: Basic head-to-head reward function
-
-
-	def reward_function(params):
-	    '''
-	    Example of rewarding the agent to stay inside two borders
-	    and penalizing getting too close to the objects in front
-	    '''
-
-	    all_wheels_on_track = params['all_wheels_on_track']
-	    distance_from_center = params['distance_from_center']
-	    track_width = params['track_width']
-	    objects_distance = params['objects_distance']
-	    _, next_object_index = params['closest_objects']
-	    objects_left_of_center = params['objects_left_of_center']
-	    is_left_of_center = params['is_left_of_center']
-
-	    # Initialize reward with a small number but not zero
-	    # because zero means off-track or crashed
-	    reward = 1e-3
-
-	    # Reward if the agent stays inside the two borders of the track
-	    if all_wheels_on_track and (0.5 * track_width - distance_from_center) >= 0.05:
-		reward_lane = 1.0
-	    else:
-		reward_lane = 1e-3
-
-	    # Penalize if the agent is too close to the next object
-	    reward_avoid = 1.0
-
-	    # Distance to the next object
-	    distance_closest_object = objects_distance[next_object_index]
-	    # Decide if the agent and the next object is on the same lane
-	    is_same_lane = objects_left_of_center[next_object_index] == is_left_of_center
-
-	    if is_same_lane:
-		if 0.5 <= distance_closest_object < 0.8: 
-		    reward_avoid *= 0.5
-		elif 0.3 <= distance_closest_object < 0.5:
-		    reward_avoid *= 0.2
-		elif distance_closest_object < 0.3:
-		    reward_avoid = 1e-3 # Likely crashed
-
-	    # Calculate reward by putting different weights on 
-	    # the two aspects above
-	    reward += 1.0 * reward_lane + 4.0 * reward_avoid
-
-	    return reward
-
 #### 4.3.2 Training algorithm and hyperparameters
 
 ![Training algorithm and hyperparameters](img/hyperparameters.png)
@@ -429,7 +381,7 @@ Note that after each training iteration we will save the new model file to your 
 
 This is the last section before you start training. Here you can specify the maximum time your model will train for. Ideally you should put a number in this condition. You can always stop training early. Furthermore, if your model stopped as a result of the condition, you can go to the model list screen, and clone your model to restart training using new parameters.
 
-Please specify at least 120 minutes, if you selected the basic suggestions, and then select **Create model**. If there is an error, you will be taken to the error location. Note the Python syntax will also be validated again. Once you start training it can take up to 6 minutes to spin up the services needed to start training. During this time let's talk through the AWS DeepRacer League and how you can take part.
+Please specify at least 60 minutes, if you selected the basic suggestions, and then select **Create model**. If there is an error, you will be taken to the error location. Note the Python syntax will also be validated again. Once you start training it can take up to 6 minutes to spin up the services needed to start training. During this time let's talk through the AWS DeepRacer League and how you can take part.
 
 ![Stopping conditions](img/stopconditions.png)
 
@@ -437,127 +389,10 @@ Note 25 to 35 minutes of lab time should have elapsed by this point.
 
 **Important to note** that once you have started training a model using a particular agent (car), the settings of the agent remains with the model, even if you go and change the agent in the Garage. Thus changes to your agents will not affect your existing models, but will only affect future models that you start training.
 
-# Section 2: Competing in the AWS DeepRacer League
+# Section 2: Competing in the ANZ DeepRacer Virtual Race
 
-## 2.1 2020 AWS DeepRacer League
+Now that you have a model created and have done some training, come along and race your model in a virtual race limited to attendees of this workshop.
 
-The League is back in 2020, so start training your models and taking part in warm-up races usch as the [AWS Innovate DeepRacer race](http://bit.ly/DeepRacerInnovate20). In 2020 you can look forward to more in-person races at selected AWS Summits, and more virtual races in the AWS DeepRacer service in the AWS console. We will also introduce two new race formats, object avoidance, and head-to-head racing, in addition to the 2019 time-trial format.
+First, second and third places will be awarded some sweet prizes so give it a go!
 
-Once you have a trained model, you can  submit it to any open race in the [console](https://console.aws.amazon.com/deepracer/home?region=us-east-1#leaderboards) or [community race](http://bit.ly/CreateVirtualRace) that you have access too. Your model will then be evaluated by the AWS DeepRacer service on the indicated competition track. After your model has been evaluated you will see your standing update if your lap time was better than your prior submission.
-
-# Section 3: Model training and improving your model
-
-## 3.1: While your model is training
-
-After you have clicked create model in section 1 step 4, your model will start training and you should see the following:
-
-![Model training](img/model_training.png)
-
-Once your model has trained for a while you should see the following:
-- **Reward graph** on the left. The reward graph plots the average reward per training iteration, and the average progress per training iteration by default. We look at the average for the training iteration as the average shows the quality of the model, not the individual episode. However you can also look at these values per episode using the toggles.
-- **Simulation video stream** on the right. This shows the video stream from the simulator, providing a third person view of your car as it is learning, and also a useful picture-in-picture aerial view of the map.
-
-![Model training](img/ongoingtraining.png)
-
-The stop condition timer shows how much time has passed since you started training.
-
-At first your car will not be able to drive on a straight road but as it learns better driving behavior you should see its performance improving, and the reward graph increasing. Furthermore, when you car drives off of the track it will be reset on the track. Don't be alarmed if your car doesn't start at the same position. We have enabled round robin to allow the car to start at subsequent points on the track each time to ensure it can train on experience from the whole track. Lastly, if you see your car aimlessly drive off track and not resetting, this is when the experience obtained is sent back to Amazon SageMaker to train the model. Once the model has been updated, the new model will be sent back to AWS RoboMaker and the car will resume.
-
-
-Scrolling down some more you will see the training configuration used for this model
-
-![Training config](img/trainingconfig.png)
-
-You also have direct links to the Amazon SageMaker job and its logs that is running, as well as to the AWS RoboMaker job and logs that is currently running. These are super valuable when you dive into the log-analysis notebook also on GitHub. AWS RoboMaker logs will contain output from the simulator, and the Amazon SageMaker logs will contain output from the model training. If there are any errors, the logs are a good place to start.
-
-![AWS RoboMaker Logs](img/robomaker_logs.png)
-
-The AWS DeepRacer service makes use of Amazon SageMaker, AWS RoboMaker, Amazon S3, Amazon Kinesis Video Streams, AWS Lambda, and Amazon CloudWatch. You can navigate to each of these services to get an update on the service's status or for other useful information.
-
-In each service you will see a list of current and prior jobs, where retained. Here is a view of training jobs executed in Amazon SageMaker.
-
-![SageMaker jobs](img/sagemaker_listjobs.png)
-
-In Amazon SageMaker you will be able to see the logs as well as utilization of the EC2 instance spun up to run training.
-
-![SageMaker jobs](img/sagemaker_jobdetails.png)
-
-In AWS RoboMaker you can see the list of all simulation jobs, and for active jobs you can get a direct view into the simulation environment.
-
-![RoboMaker jobs](img/aws_robomaker_jobs_list.png)
-
-You can select your active simulation job from the list and then select the Gazebo icon. 
-
-![RoboMaker job details](img/aws_robomaker.png)
-
-This will open a new window showing you the simulation environment. **Take care in this environment because any changes you make to it will affect your simulation in real time. Thus if you accidentally drag or rotate the vehicle or the environment, it may negatively affect your training job.**
-
-![RoboMaker simulator](img/robomaker_simulator.png) 
-
-The Amazon Kinesis Video Stream is typically deleted after use to free up space and due to limits on the number of streams. Note also that at present the video is not yet stored in your S3 account, for both training and evaluations.
-
-![KVS stream](img/kvsnew.png)
-
-Amazon S3 will store the final model, that is referenced in the AWS DeepRacer service, and interim models trained during your training jobs in the aws-deepracer bucket. Your reward functions will also be stored in the same bucket.
-
-![S3list](img/s3.png)
-
-The final model is stored as model.tar.gz file in a folder called DeepRacer-SageMaker-rlmdl-account number-date in your DeepRacer S3 bucket.  
-The interim models are stored as .pd files in a folder called DeepRacer-SageMaker-RoboMaker-comm-account number-date
-![S3dr](img/s3_aws_deepracer.png)
-
-The AWS DeepRacer service can at the time of writing only reference one final model for each training job. However, should you want to swap out the model trained during the final training iteration, with any model trained in the training iterations running up to the final, you can simple swap out the model.pb file in the final model.tar.gz file. Note that you should not change the other files in the .tar.gz as this may render the model useless. Do this after your model has stopped training, or after you manually stopped training.
-
-## 3.2: Evaluating the performance of your model
-
-You may not have time in the workshop to do from step 2 onwards. Once your model training is complete you can start model evaluation. From your model details page, where you observed training, select **Start evaluation**. You can now select the track on which you want to evaluate the performance of your model and also the number of laps. Select the re:Invent 2018 track and 5 laps and select Start. 
-
-Once done you should see something as follows.
-
-![evaluation_done](img/evaluationdone.png)
-
-## 3.3: Race in the AWS DeepRacer League
-
-If you are happy with your model you can go race in the [Summit Circuit](https://aws.amazon.com/deepracer/summit-circuit/) or in the [Virtual Circuit](https://console.aws.amazon.com/deepracer/home?region=us-east-1#leaderboards). You can submit your trained model into the Virtual Circuit's current open race [here](https://console.aws.amazon.com/deepracer/home?region=us-east-1#leaderboards).
-
-## 3.4: Create and host your own Virtual Race
-
-Navigate to [Community races](https://console.aws.amazon.com/deepracer/home?region=us-east-1#/races) in the console and **create your own virtual race**.
-
-![community races](img/communityraces.png)
-
-You can share the code with your friends and colleagues and create a league of your own!
-
-## 3.5: Iterating and improving your model
-
-Based on the evaluation of the model you should have a good idea as to whether your model can complete the track reliably, and what the average lap time is. Note that for the Virtual Circuit races you will have to complete a certain number of laps consecutively with your model, and so focus on building a reliable model. The number of laps will be determined race by race.
-
-At this point you have to experiment and iterate on your reward function and hyperparameters. It is best to try a few different reward functions based on different driving behavior, and then evaluate them in the simulator to select the best performing one. If you have an AWS DeepRacer you can also test them in the real world.
-
-Hints:
-- Increase training time beyond. If your model can't reliably complete a lap try to extend your model training time.
-- Try modifying action space by increasing max speed to get faster lap times.
-- Tweak your reward function to incentivize your car to drive faster : you’ll want to specifically modify progress, steps and speed variables.
-- Clone your model to leverage training experience. Please note that you will not be able to change action space once a model is cloned, otherwise the job will fail.
-
-## 3.6: Analyze model performance by inspecting the RoboMaker logs
-If you do want to go a step further, you can evaluate the performance of each model that was trained during the training job by inspecting the log file.
-
-To download the log file from CloudWatch you can use the following code with [Amazon CLI](https://docs.aws.amazon.com/polly/latest/dg/setup-aws-cli.html).  
-
-**Download the RoboMaker log from CloudWatch**
-
-1. [Quick Analysis] Get last 10000 lines from the log
-
-	aws logs get-log-events --log-group-name  "/aws/robomaker/SimulationJobs"  --log-stream-name  "<STREAM_NAME>" --output text --region us-east-1 > deepracer-sim.log
-
-2. [Export Entire Log] Copy the log from Amazon Cloudwatch to Amazon S3. Follow the link to export all the logs to [Amazon S3](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html)
-
-You can now analyze the log file using Python Pandas and see which model iterations provided the highest total reward. Furthermore, if you did add a finish bonus, you can see which model iterations were able to finish a lap. These models are good candidates to test in the simulator and in the real world.
-
-## 3.7: Join the AWS DeepRacer Slack Community
-
-Join the **[AWS DeepRacer Slack Community](https://deepracer-community.slack.com/)** where community members are discussing everything DeepRacer.
-
-
-
+You can enter your model in the race here: https://console.aws.amazon.com/deepracer/home#raceToken/8Eq5G4QuTheHlorHuE626g
