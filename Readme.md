@@ -83,7 +83,7 @@ Please select **Next**.
 
 ### 2.2 Action space
 
-![Garage step 2](img/garage_step_2.png)
+![Garage step 2](img/action-space.png)
 
 In this section you get to configure the action space that your model will use during training. Once the model has been trained with a specific action space, you can't change the action space in the console as this is the last layer of the network, specifically the number of output nodes. An action is a combination of speed and steering angle. In AWS DeepRacer we are using a discrete action space as opposed to a continuous action space. To build this discrete action space you will specify the maximum steering angle, the steering angle granularity, the maximum speed, and the speed granularity. The action space inputs are:
 
