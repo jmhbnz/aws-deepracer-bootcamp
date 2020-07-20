@@ -2,7 +2,7 @@
 
 Welcome to the second ANZ Summer of Tech Bootcamp for 2020!
 
-# Introduction
+# Introduction -J
 
 To get started, I want to introduce the [AWS DeepRacer](https://www.deepracerleague.com) league. DeepRacer is a reinforcement maching learning based global autonomous car racing league. Anyone can participate in the league online and in person person events are held regularly as well. 
 
@@ -19,8 +19,8 @@ Earlier this year in February [@Alex](https://github.com/alextaikato), [@Chris](
 
 &nbsp;
 &nbsp;
-
-# How this session will run
+ 
+# How this session will run -A
 
 - Everyone has an opportunity to participate - This is intended to be a hands on session. After some initial discussion as one group together, we can split out into teams using the breakout rooms feature in Zoom, or work individually to develop our own machine learning models and see how these work in simulations.
 
@@ -36,7 +36,7 @@ Earlier this year in February [@Alex](https://github.com/alextaikato), [@Chris](
 &nbsp;
 
 # Section 1: Training a model together
-## Step 1: Lets login to the AWS DeepRacer service and create resources
+## Step 1: Lets login to the AWS DeepRacer service and create resources -J
 
 To get underway we'll complete this first walkthrough together as a group, just to give you an idea how DeepRacer works. Once we've completed the walkthrough you'll have time to work on a model as a team or individually.
 
@@ -58,7 +58,7 @@ While the stack is being created we can call out items in the left-hand navigati
 
 Let's dive into the Garage first, as this is where we will customize the car we will use during model training. Please expand the left hand navigation bar and select **Garage**.
 
-## Step 2: Garage
+## Step 2: Garage -A
 When you visit the **Garage** for the first time you will be presented with an overview of the Garage, which you can revisit using the Info bar on the right. The Garage allows you to create and customize your own virtual cars that you will then use to train models for. By default ,the Garage contains the **The Original DeepRacer**. The original DeepRacer uses a single front-facing camera, a 3 layer convolutional neural network, and a maximum speed action space of 1m/s.
 
 Note: If you have used AWS DeepRacer before, the action space speeds have been updated to provide a closer match to real world speeds. A quick rule of thumb is to take your old model's speed and divide it by 3. This gets you to the current console value.
