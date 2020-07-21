@@ -116,7 +116,7 @@ You should now be back in the Garage and see your vehicle.
 
 Please expand the left-hand nav bar and select **Models**.
 
-## Step 3: Model List Page
+## Step 3: Model List Page -J
 The **Models** page shows a list of all the models you have created and the status of each model. If you want to create models, this is where you start the process. Similarly, from this page you can download, clone, and delete models. If this is the first time you are using the service and have just created your resources, you should see a few sample models in your account.
 
 ![Model List Page](img/model_list.png)
@@ -126,7 +126,7 @@ You can create a model by selecting **Create model**. Once you have created a mo
 To create your model select **Create model**.
 
 
-## Step 4: Create model
+## Step 4: Create model -J
 This page gives you the ability to create an RL model for AWS DeepRacer and start training the model. We are going to create a model that can be used by the AWS DeepRacer car to autonomously drive around a virtual race track. We need to select the specific race track we want to train on, specify the reward function that will be used to incentivize our desired driving behavior during training, configure hyperparameters, and specify our stopping conditions. 
 
 ![Model Name](img/create_model_1_model_name.png)
@@ -389,10 +389,10 @@ Note 25 to 35 minutes of lab time should have elapsed by this point.
 
 **Important to note** that once you have started training a model using a particular agent (car), the settings of the agent remains with the model, even if you go and change the agent in the Garage. Thus changes to your agents will not affect your existing models, but will only affect future models that you start training.
 
-# Section 2: Competing in the ANZ DeepRacer Virtual Race
+# Section 2: Competing in the ANZ DeepRacer Virtual Race -A
 
 Now that you have a model created and have done some training, come along and race your model in a virtual race limited to attendees of this workshop.
 
 First, second and third places will be awarded some sweet prizes so give it a go!
 
-You can enter your model in the race here: https://console.aws.amazon.com/deepracer/home#raceToken/8Eq5G4QuTheHlorHuE626g
+You can enter your model in the race here: https://console.aws.amazon.com/deepracer/home#raceToken/YNzi5qRaTgOQjNjVmgCDFA
